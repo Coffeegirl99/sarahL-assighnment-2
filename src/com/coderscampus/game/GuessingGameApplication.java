@@ -26,15 +26,22 @@ public class GuessingGameApplication {
 				System.out.println("You win!");
 				System.out.println("The number to guess was: " + randomNumber);
 				return;
-			} if (userInput < randomNumber) {
+			}
+			if (userInput < randomNumber) {
 				System.out.println("Please pick a higher number");
 				userInput = scanner.nextInt();
-			} if (userInput > randomNumber) {
+			}
+			if (userInput > randomNumber) {
 				System.out.println("Please pick a lower number");
 				userInput = scanner.nextInt();
-			}
-		}
 
+			}
+
+		}
+		while (userInput < 1 || userInput > 100) {
+			System.out.println("Your guess is not between 1 and 100, please try again");
+			userInput = scanner.nextInt();
+		}
 		System.out.println("You lose!");
 		System.out.println("The number to guess was: " + randomNumber);
 	}
