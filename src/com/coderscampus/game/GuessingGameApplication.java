@@ -8,41 +8,41 @@ public class GuessingGameApplication {
 	public static void main(String[] args) {
 
 		Random random = new Random();
-		int randomNumber = random.nextInt(100);
+		int randomNumber = random.nextInt(100);// Generate a random number between 1 and 100
 
 		System.out.println("Pick a number between 1 and 100");
 
-		Scanner scanner = new Scanner(System.in);
-		Integer userInput = scanner.nextInt();
+		try (Scanner scanner = new Scanner(System.in)) {
 
-		while (userInput < 1 || userInput > 100) {
-			System.out.println("Your guess is not between 1 and 100, please try again");
-			userInput = scanner.nextInt();
-		}
+			int userInput;
 
-		for (int guessCount = 1; guessCount <= 4; guessCount++) {
+			for (int guessCount = 1; guessCount <= 5; guessCount++) { // Allow the player to guess up to 5 times
 
-			if (userInput == randomNumber) {
-				System.out.println("You win!");
-				System.out.println("The number to guess was: " + randomNumber);
-				return;
+				while (true) {
+
+					userInput = scanner.nextInt();
+					if (userInput < 1 || userInput > 100) {
+						System.out.println("Your guess is not between 1 and 100, please try again: ");
+						continue;
+					}
+					break;
+				}
+
+				if (userInput < randomNumber) {
+					System.out.println("Please pick a higher number");
+				} else if (userInput > randomNumber) {
+					System.out.println("Please pick a lower number");
+				} else {
+					System.out.println("You win!");
+					System.out.println("The number to guess was: " + randomNumber);
+					return; // End the game if the player wins
+				}
+
 			}
-			if (userInput < randomNumber) {
-				System.out.println("Please pick a higher number");
-				userInput = scanner.nextInt();
-			}
-			if (userInput > randomNumber) {
-				System.out.println("Please pick a lower number");
-				userInput = scanner.nextInt();
-
-			}
-
+			// The player has used all of their guesses, so the game is over
+			System.out.println("You lose!");
+			System.out.println("The number to guess was: " + randomNumber);
 		}
-		while (userInput < 1 || userInput > 100) {
-			System.out.println("Your guess is not between 1 and 100, please try again");
-			userInput = scanner.nextInt();
-		}
-		System.out.println("You lose!");
-		System.out.println("The number to guess was: " + randomNumber);
 	}
+
 }
