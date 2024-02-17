@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class GuessingGameApplication {
 
 	public static void main(String[] args) {
-
+		System.out.println("hii :)");
 		Random random = new Random();
 		int randomNumber = random.nextInt(100) + 1;// Generate a random number between 1 and 100
 
